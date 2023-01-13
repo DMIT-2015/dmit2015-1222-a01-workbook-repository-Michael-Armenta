@@ -1,9 +1,7 @@
-# DMIT2015 Fall 2022 assignments
+# DMIT2015 Winter 2023 assignments
 
-## your name here
+## Michael Armenta
 
-## your Github Account id
+## Michael-Armenta
 
-This is a private repository for your assignments. 
-You will use this only for evaluation work. 
-Assignment work not submitted within this repository will not be evaluated.
+This is a public repository for your exercises. 
