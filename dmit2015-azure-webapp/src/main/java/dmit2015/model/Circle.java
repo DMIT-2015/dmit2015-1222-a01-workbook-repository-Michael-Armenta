@@ -7,6 +7,11 @@ package dmit2015.model;
  * @version 2023.01.20
  */
 
+/**
+ * Comment documention is needed before the class,
+ * on the fields (or getters and setters)
+ * and method manipulations
+ */
 public class Circle {
 
     /**
