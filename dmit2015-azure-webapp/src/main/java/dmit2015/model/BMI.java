@@ -32,7 +32,7 @@ public class BMI {
     }
 
     public double bmi() {
-        return (double) Math.round((703 * weight) / Math.pow(height, 2));
+        return (double) Math.round((703 * weight) / Math.pow(height, 2) * 100.0) / 100.0;
     }
 
     public String bmiCategory() {

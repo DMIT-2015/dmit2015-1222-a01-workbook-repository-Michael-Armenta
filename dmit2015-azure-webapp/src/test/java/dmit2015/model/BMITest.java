@@ -23,7 +23,7 @@ class BMITest {
         bmi1.setWeight(weight);
         bmi1.setHeight(height);
         // Assert
-        assertEquals(expectedWeight, bmi1.bmi());
+        assertEquals(expectedWeight, bmi1.bmi(), 0.50);
     }
 
     @ParameterizedTest(name = "weight = {0}, height = {1} expected weight = {2} ")

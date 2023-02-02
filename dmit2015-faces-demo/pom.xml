@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ca.nait.dmit</groupId>
-    <artifactId>dmit2015-azure-webapp</artifactId>
+    <artifactId>dmit2015-faces-demo</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>dmit2015-azure-webapp</name>
+    <name>dmit2015-faces-demo</name>
     <packaging>war</packaging>
 
     <properties>
@@ -17,39 +17,7 @@
         <junit.version>5.9.2</junit.version>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.junit</groupId>
-                <artifactId>junit-bom</artifactId>
-                <version>${junit.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
-
-        <!-- https://mvnrepository.com/artifact/com.google.zxing/core -->
-        <dependency>
-            <groupId>com.google.zxing</groupId>
-            <artifactId>core</artifactId>
-            <version>3.5.1</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.google.zxing/javase -->
-        <dependency>
-            <groupId>com.google.zxing</groupId>
-            <artifactId>javase</artifactId>
-            <version>3.5.1</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.glassfish.web</groupId>
-            <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-            <version>2.0.0</version>
-        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -59,23 +27,82 @@
         </dependency>
 
         <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>jakarta.servlet-api</artifactId>
-            <version>5.0.0</version>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>12.0.0</version>
+            <classifier>jakarta</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>primeflex</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.omnifaces</groupId>
+            <artifactId>omnifaces</artifactId>
+            <version>4.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.8.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.3.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>selenium-jupiter</artifactId>
+            <version>4.3.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest</artifactId>
+            <version>2.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <version>3.0.2</version>
             <scope>provided</scope>
         </dependency>
-
+        <dependency>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>jakarta.enterprise.cdi-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.faces</groupId>
+            <artifactId>jakarta.faces-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>6.0.0</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-suite-engine</artifactId>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -86,22 +113,6 @@
                 <version>3.3.2</version>
             </plugin>
 
-            <!-- Plugin to run unit tests-->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M7</version>
-            </plugin>
-
-            <!-- Plugin to run functional tests -->
-            <!--  mvn failsafe:integration-test -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.0.0-M7</version>
-            </plugin>
-
-            <!-- Plugin to build a bootable JAR for WildFly -->
             <plugin>
                 <!-- https://docs.wildfly.org/bootablejar/#wildfly_jar_dev_mode -->
                 <!-- mvn wildfly-jar:dev-watch -->
@@ -109,16 +120,12 @@
                 <artifactId>wildfly-jar-maven-plugin</artifactId>
                 <version>8.1.0.Final</version>
                 <configuration>
-                    <feature-pack-location>wildfly-preview@maven(org.jboss.universe:community-universe)#27.0.1.Final</feature-pack-location>
+                    <feature-pack-location>wildfly@maven(org.jboss.universe:community-universe)#27.0.1.Final</feature-pack-location>
                     <layers>
                         <!-- https://docs.wildfly.org/27/Bootable_Guide.html#wildfly_layers -->
                         <layer>web-server</layer>
-<!--                        <layer>management</layer>-->
-<!--                        <layer>ejb</layer>-->
-<!--                        <layer>mail</layer>-->
-<!--                        <layer>batch-jberet</layer>-->
-<!--                        <layer>microprofile-config</layer>-->
-<!--                        <layer>jsf</layer>-->
+                        <layer>jsf</layer>
+                        <layer>microprofile-config</layer>
                     </layers>
                     <excluded-layers>
                         <layer>deployment-scanner</layer>
@@ -135,7 +142,6 @@
                         -->
                         <arg>-agentlib:jdwp=transport=dt_socket,address=8787,server=y,suspend=n</arg>
                     </jvmArguments>
-                    <timeout>120</timeout>
                 </configuration>
                 <executions>
                     <execution>
