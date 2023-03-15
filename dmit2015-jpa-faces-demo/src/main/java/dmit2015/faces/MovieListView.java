@@ -30,6 +30,8 @@ public class MovieListView implements Serializable {
     public void init() {
         try {
             movieList = _movieRepository.findAll();
+        } catch (RuntimeException ex) {
+            Messages.addGlobalWarn(ex.getMessage());
         } catch (Exception ex) {
             Messages.addGlobalError(ex.getMessage());
         }
