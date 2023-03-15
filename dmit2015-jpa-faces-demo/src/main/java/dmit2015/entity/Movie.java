@@ -35,6 +35,7 @@ public class Movie implements Serializable {
     @NotNull(message = "The Release Date field is required")
     private LocalDate releaseDate;
 
+    @NotNull(message = "The field Price is required.")
     @DecimalMin(value = "1.00",message = "The price must be a number between 0.00 and 100.00.")
     @DecimalMax(value = "100.00",message = "The price must be a number between 0.00 and 100.00.")
     private BigDecimal price;
@@ -58,18 +59,18 @@ public class Movie implements Serializable {
     private Integer version;
 
     @Column(nullable = false)
-    private LocalDateTime createdDateTime;
+    private LocalDateTime createTime;
 
-    private LocalDateTime updatedDateTime;
+    private LocalDateTime updateTime;
 
     @PrePersist
     private void beforePersist() {
-        createdDateTime = LocalDateTime.now();
+        createTime = LocalDateTime.now();
     }
 
     @PreUpdate
     private void beforeUpdate() {
-        updatedDateTime = LocalDateTime.now();
+        updateTime = LocalDateTime.now();
     }
 
     public static Optional<Movie> parseCsv(String line) {

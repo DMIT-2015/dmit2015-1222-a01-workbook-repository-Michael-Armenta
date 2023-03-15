@@ -15,7 +15,6 @@ import java.util.Optional;
 @WebListener
 public class MoviesApplicationStartupListener implements ServletContextListener, HttpSessionListener, HttpSessionAttributeListener {
 
-
     @Inject
     MovieRepository _movieRepository;
 
@@ -25,6 +24,7 @@ public class MoviesApplicationStartupListener implements ServletContextListener,
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         /* This method is called when the servlet context is initialized(when the Web application is deployed). */
+
         if (_movieRepository.count() == 0) {
             try {
                 try (var reader = new BufferedReader(new InputStreamReader(
