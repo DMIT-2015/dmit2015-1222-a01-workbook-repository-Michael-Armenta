@@ -40,7 +40,7 @@
                 <p:column headerText="Key">
                     <h:outputText value="#{currentItem.key}"/>
                 </p:column>
-                <p:column headerText="Property2">
+                <p:column headerText="Task">
                     <h:outputText value="#{currentItem.value.task}"/>
                 </p:column>
 
@@ -52,23 +52,23 @@
                     <p:selectBooleanCheckbox value="#{currentItem.value.important}" disabled="true"/>
                 </p:column>
 
-                <p:column headerText="Action">
-                    <p:link id="editLink" outcome="edit" value="edit">
-                        <f:param name="editId" value="#{currentItem.key}"/>
-                    </p:link>
+<!--                <p:column headerText="Action">-->
+<!--                    <p:link id="editLink" outcome="edit" value="edit">-->
+<!--                        <f:param name="editId" value="#{currentItem.key}"/>-->
+<!--                    </p:link>-->
 
-                    |
+<!--                    |-->
 
-                    <p:link id="detailsLink" outcome="details" value="details">
-                        <f:param name="editId" value="#{currentItem.key}"/>
-                    </p:link>
+<!--                    <p:link id="detailsLink" outcome="details" value="details">-->
+<!--                        <f:param name="editId" value="#{currentItem.key}"/>-->
+<!--                    </p:link>-->
 
-                    |
+<!--                    |-->
 
-                    <p:link id="deleteLink" outcome="delete" value="delete">
-                        <f:param name="editId" value="#{currentItem.key}"/>
-                    </p:link>
-                </p:column>
+<!--                    <p:link id="deleteLink" outcome="delete" value="delete">-->
+<!--                        <f:param name="editId" value="#{currentItem.key}"/>-->
+<!--                    </p:link>-->
+<!--                </p:column>-->
 
             </p:dataTable>
 
