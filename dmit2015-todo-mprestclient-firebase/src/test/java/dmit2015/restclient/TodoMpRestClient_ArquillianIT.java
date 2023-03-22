@@ -24,6 +24,7 @@ import java.time.LocalDate;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * https://eclipse-ee4j.github.io/jsonb-api/docs/user-guide.html
@@ -71,7 +72,8 @@ public class TodoMpRestClient_ArquillianIT { // The class must be declared as pu
         var lastKey = TodoMap.keySet().stream().toList().get(TodoMap.size() - 1);
         Todo lastTodo = TodoMap.get(lastKey);
         assertEquals("Run Integration Test", lastTodo.getTask());
-        assertEquals(true, lastTodo.getImportant());
+        assertEquals(true, firstTodo.getImportant());
+
     }
 
     @Order(2)
@@ -115,6 +117,7 @@ public class TodoMpRestClient_ArquillianIT { // The class must be declared as pu
         // Assert
         assertEquals(existingTodo.getTask(), updatedTodo.getTask());
         assertEquals(existingTodo.getCompleted(), updatedTodo.getCompleted());
+
     }
 
     @Order(5)

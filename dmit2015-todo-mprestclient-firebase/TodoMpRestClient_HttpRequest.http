@@ -1,5 +1,6 @@
+
 ### Create a new document
-POST https://dmit2015-1222-swu-a01-default-rtdb.firebaseio.com/Todo.json
+POST https://dmit2015-1222-marmenta1-a01-default-rtdb.firebaseio.com/Todo.json
 Content-Type: application/json
 
 {
@@ -8,7 +9,7 @@ Content-Type: application/json
 }
 
 ### Create a new document
-POST https://dmit2015-1222-swu-a01-default-rtdb.firebaseio.com/Todo.json
+POST https://dmit2015-1222-marmenta1-a01-default-rtdb.firebaseio.com/Todo.json
 Content-Type: application/json
 
 {
@@ -18,33 +19,46 @@ Content-Type: application/json
 }
 
 ### Create a new document
-POST https://dmit2015-1222-swu-a01-default-rtdb.firebaseio.com/Todo.json
+POST https://dmit2015-1222-marmenta1-a01-default-rtdb.firebaseio.com/Todo.json
+Content-Type: application/json
+
+{
+  "task": "Run Integration Test",
+  "important": true
+}
+
+### Create a new document
+POST https://dmit2015-1222-marmenta1-a01-default-rtdb.firebaseio.com/Todo.json
 Content-Type: application/json
 
 {
   "task": "Do daily morning exercise"
 }
+
 ### GET All documents
-GET https://dmit2015-1222-swu-a01-default-rtdb.firebaseio.com/Todo.json
+GET https://dmit2015-1222-marmenta1-a01-default-rtdb.firebaseio.com/Todo.json
 
 ### GET One document by key
-GET https://dmit2015-1222-swu-a01-default-rtdb.firebaseio.com/Todo/-NQeuA9GqvxL8MbKo6k2.json
+#GET https://dmit2015-1222-marmenta1-a01-default-rtdb.firebaseio.com/Todo/primaryKeyValue.json
+GET https://dmit2015-1222-marmenta1-a01-default-rtdb.firebaseio.com/Todo/-NQev83I-vkE-NJ91fzO.json
 
 ### UPDATE document - will replace all properties with the properties in the request body - if you miss a property it will be removed
-PUT https://dmit2015-1222-swu-a01-default-rtdb.firebaseio.com/Todo/-NQeuA9GqvxL8MbKo6k2.json
+#PUT https://dmit2015-1222-marmenta1-a01-default-rtdb.firebaseio.com/Todo/primaryKeyValue.json
+PUT https://dmit2015-1222-marmenta1-a01-default-rtdb.firebaseio.com/Todo/-NQev83I-vkE-NJ91fzO.json
 Content-Type: application/json
 
 {
-  "completed": false,
+  "completed": true,
   "task": "Drink Coffee"
 }
 
 ### DELETE document - use this if you want to delete a document
-DELETE https://dmit2015-1222-swu-a01-default-rtdb.firebaseio.com/Todo/-NQeuhQrwhRAEIMBumZN.json
+#DELETE https://dmit2015-1222-marmenta1-a01-default-rtdb.firebaseio.com/Todo/primaryKeyValue.json
+DELETE https://dmit2015-1222-marmenta1-a01-default-rtdb.firebaseio.com/Todo/-NQev83I-vkE-NJ91fzO.json
 
 
 ### PATCH document - use this if you want to update some of the properties but not all of them
-PATCH https://dmit2015-1222-swu-a01-default-rtdb.firebaseio.com/Todo/-NQeuA9GqvxL8MbKo6k2.json
+PATCH https://dmit2015-1222-marmenta1-a01-default-rtdb.firebaseio.com/Todo/-NQev9Duf6pT-IdsaV6r.json
 Content-Type: application/json
 
 {

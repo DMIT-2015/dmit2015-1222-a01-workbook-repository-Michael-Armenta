@@ -38,7 +38,7 @@ import java.util.LinkedHashMap;
  * </code>
  */
 @RequestScoped
-@RegisterRestClient(baseUri = "https://dmit2015-1222-swu-a01-default-rtdb.firebaseio.com")
+@RegisterRestClient(baseUri = "https://dmit2015-1222-marmenta1-a01-default-rtdb.firebaseio.com")
 public interface TodoMpRestClient {
 
     final String DOCUMENT_URL = "/Todo";
