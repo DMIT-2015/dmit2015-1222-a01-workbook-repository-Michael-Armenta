@@ -26,7 +26,7 @@ public class MovieListView implements Serializable {
     @Getter
     private List<Movie> movieList;
 
-    @PostConstruct  // After @Inject is complete
+    //@PostConstruct  // After @Inject is complete
     public void init() {
         try {
             movieList = _movieRepository.findAll();
