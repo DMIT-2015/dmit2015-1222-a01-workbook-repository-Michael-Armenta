@@ -3,7 +3,9 @@ package dmit2015.resource;
 import common.validator.BeanValidator;
 import dmit2015.entity.TodoItem;
 import dmit2015.repository.TodoItemRepository;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.OptimisticLockException;
 import jakarta.validation.Valid;
@@ -12,6 +14,8 @@ import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.UriInfo;
+import org.eclipse.microprofile.jwt.JsonWebToken;
+
 import java.net.URI;
 import java.util.Optional;
 
@@ -54,12 +58,15 @@ import java.util.Optional;
  *
  */
 
-@ApplicationScoped
+@RequestScoped
 // This is a CDI-managed bean that is created only once during the life cycle of the application
 @Path("TodoItems")	        // All methods of this class are associated this URL path
 @Consumes(MediaType.APPLICATION_JSON)	// All methods this class accept only JSON format data
 @Produces(MediaType.APPLICATION_JSON)	// All methods returns data that has been converted to JSON format
 public class TodoItemResource {
+
+    @Inject
+    private JsonWebToken _callerPrincipal;
 
     @Context
     private UriInfo uriInfo;
@@ -67,6 +74,7 @@ public class TodoItemResource {
     @Inject
     private TodoItemRepository todoItemRepository;
 
+    @RolesAllowed({"Sales", "IT"})
     @POST   // POST: /restapi/TodoItems
     public Response postTodoItem(TodoItem newTodoItem) {
         if (newTodoItem == null) {
@@ -80,6 +88,9 @@ public class TodoItemResource {
                     .entity(errorMessage)
                     .build();
         }
+
+        String username = _callerPrincipal.getName();
+        newTodoItem.setUsername(username);
 
         todoItemRepository.add(newTodoItem);
         URI todoItemsUri = uriInfo.getAbsolutePathBuilder().path(newTodoItem.getId().toString()).build();
@@ -101,7 +112,9 @@ public class TodoItemResource {
 
     @GET    // GET: /restapi/TodoItems
     public Response getTodoItems() {
-        return Response.ok(todoItemRepository.findAll()).build();
+        String username = _callerPrincipal.getName();
+        //return Response.ok(todoItemRepository.findAll()).build();
+        return Response.ok(todoItemRepository.findAllByUserName(username)).build();
     }
 
     @PUT    // PUT: /restapi/TodoItems/5
@@ -145,6 +158,7 @@ public class TodoItemResource {
         return Response.ok(existingTodoItem).build();
     }
 
+    @RolesAllowed({"IT"})
     @DELETE // DELETE: /restapi/TodoItems/5
     @Path("{id}")
     public Response deleteTodoItem(@PathParam("id") Long id) {

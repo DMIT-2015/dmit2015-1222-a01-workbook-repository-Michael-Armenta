@@ -5,12 +5,24 @@ import dmit2015.entity.TodoItem;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 
+import java.util.List;
+
 @ApplicationScoped
 @Transactional
 public class TodoItemRepository extends AbstractJpaRepository<TodoItem, Long> {
 
     public TodoItemRepository() {
         super(TodoItem.class);
+    }
+
+    public List<TodoItem> findAllByUserName(String username) {
+        return getEntityManager().createQuery("""
+            select t
+            from TodoItem t
+            where t.username = :usernameParam
+            """, TodoItem.class)
+                .setParameter("usernameParam", username)
+                .getResultList();
     }
 
 }
